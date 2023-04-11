@@ -25,6 +25,18 @@ export default async function (req, res) {
     return;
   }
 
+  const subject = [
+    {id: 1, name: '英文'},
+    {id: 2, name: '數學'},
+    {id: 3, name: 'Physics'},
+    {id: 4, name: 'Chemistry'},
+    {id: 5, name: 'Biology'},
+    {id: 6, name: 'Economics'},
+    {id: 7, name: 'Geography'},
+    {id: 8, name: '綜合活動'},
+    {id: 9, name: 'ICT'}
+    ];
+
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",

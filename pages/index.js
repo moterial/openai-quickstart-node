@@ -1,57 +1,43 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+import styles from "../styles/index.module.css";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
-  const [result, setResult] = useState();
-
-  async function onSubmit(event) {
-    event.preventDefault();
-    try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ animal: animalInput }),
-      });
-
-      const data = await response.json();
-      if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
-      }
-
-      setResult(data.result);
-      setAnimalInput("");
-    } catch(error) {
-      // Consider implementing your own error handling logic here
-      console.error(error);
-      alert(error.message);
-    }
-  }
+  
+const subject = [
+    {id: 1, name: '英文'},
+    {id: 2, name: '數學'},
+    {id: 3, name: 'Physics'},
+    {id: 4, name: 'Chemistry'},
+    {id: 5, name: 'Biology'},
+    {id: 6, name: 'Economics'},
+    {id: 7, name: 'Geography'},
+    {id: 8, name: '綜合活動'},
+    {id: 9, name: 'ICT'}
+    ];
 
   return (
     <div>
       <Head>
         <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="/teacher.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
-        <div className={styles.result}>{result}</div>
+        <img src="/teacher.png" className={styles.icon} />
+        <h3>選擇你的學科</h3>
+        {
+            subject.map((item) => {
+                return (
+                    <div className='text-2xl my-1' key={item.id}>
+                        <a href={`/subject/${item.id}`} >
+                            <button className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md'>{item.name}</button>
+                        </a>
+                    </div>
+                )
+            })
+        }
+
       </main>
     </div>
   );

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Style for the custom scrollbar track */
+  .scrollbar-track {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+  }
+  
+  /* Style for the custom scrollbar thumb */
+  .scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 10px;
+  }
+  
+  /* Hover effect for the custom scrollbar thumb */
+  .scrollbar-thumb:hover {
+    background-color: #a7a7a7;
+  }
